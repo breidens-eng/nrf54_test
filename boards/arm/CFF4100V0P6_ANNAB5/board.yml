@@ -1,0 +1,6 @@
+board:
+  name: CFF4100V0P6_ANNAB5
+  full_name: CFF4100V0.6
+  vendor: nordic
+  socs:
+   - name: nrf52832

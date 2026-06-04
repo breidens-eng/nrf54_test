@@ -1,0 +1,9 @@
+board:
+  name: AB0001
+  full_name: AB0001
+  vendor: abus
+  socs:
+  - name: nrf54l15
+    variants:
+    - name: xip
+      cpucluster: cpuflpr

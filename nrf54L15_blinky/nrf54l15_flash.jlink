@@ -1,0 +1,16 @@
+// https://wiki.segger.com/index.php?title=J-Link_Commander
+device nrf54l15_m33
+si 1
+speed 4000
+sleep 1000
+
+//Prog Sequence
+//loadfile build/nrf54L15_blinky/zephyr/zephyr.hex
+loadfile build/merged.hex
+sleep 1000
+
+//Reset Sequence
+
+rx 200
+g
+exit
