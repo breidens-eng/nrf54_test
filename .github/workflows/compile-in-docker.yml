@@ -1,0 +1,37 @@
+name: Compile Code in Docker Container
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: gerdie/nordic
+
+    # Hier definierst du dein Docker Hub Image
+    container:
+      image: gerdie/ubuntu-zephyr-ncs-v2.9.0:v1
+      # Falls dein Image privat ist, entkommentiere die folgenden Zeilen:
+      # credentials:
+      #   username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #   password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    steps:
+      # 1. Quellcode aus dem Repository in den Container laden
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Deinen Compiler-Befehl im Container ausführen
+      - name: Code kompilieren
+        run: |
+          echo "Kompiliere Code mit dem Compiler aus dem Docker-Container..."
+          gcc-oder-dein-compiler-befehl -o mein-programm main.c
+          
+      # 3. (Optional) Das fertige Kompilat als Artefakt sichern
+      - name: Artefakt hochladen
+        uses: actions/artifacts@v4
+        with:
+          name: kompiliertes-programm
+          path: mein-programm
