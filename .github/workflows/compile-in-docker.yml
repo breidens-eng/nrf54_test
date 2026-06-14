@@ -12,7 +12,7 @@ jobs:
 
     # Hier definierst du dein Docker Hub Image
     container:
-      image: https://hub.docker.com/repository/docker/gerdie/ubuntu-zephyr-ncs-v2.9.0:v0
+      image: gerdie/ubuntu-zephyr-ncs-v2.9.0:latest
       # Falls dein Image privat ist, entkommentiere die folgenden Zeilen:
       # credentials:
       #   username: ${{ secrets.DOCKERHUB_USERNAME }}
