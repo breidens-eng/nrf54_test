@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: gerdie/nordic
+    runs-on: ubuntu-latest
 
     # Hier definierst du dein Docker Hub Image
     container:
