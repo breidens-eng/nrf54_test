@@ -1,0 +1,37 @@
+name: Build NRF54 Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: gerdie/ubuntu-zephyr-ncs-v2.9.0:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        working-directory: nrf54L15_blinky
+        run: make all
+
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: nrf54L15_blinky/build/
+          retention-days: 30
+
+      - name: Clean build directory
+        if: always()
+        working-directory: nrf54L15_blinky
+        run: make clean
